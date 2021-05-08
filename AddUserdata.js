@@ -6,7 +6,7 @@ export class AddUserdata extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        username : "",
+      username : "",
 	    email : "",
 	    phone : "",
 	    address : ""
@@ -15,7 +15,7 @@ export class AddUserdata extends Component {
 
   handleAdd(){
 
-    axios.post('http://192.168.0.106:4646/userdata/addUserdata', this.state)
+    axios.post(`http://192.168.0.106:4646/userdata/addUserdata`, this.state)
 
     .then( (response) => {
         alert(response.data);
@@ -41,6 +41,11 @@ export class AddUserdata extends Component {
         <TextInput placeholder = "Address" onChangeText={(data)=>{this.setState({address:data})}}/>
       
         <TouchableOpacity style = {styles.button} onPress = {this.handleAdd.bind(this)}><Text style={styles.title}>⭐Add Userdata⭐</Text></TouchableOpacity>
+        
+        <View style = {styles.dualbutton}>
+          <TouchableOpacity onPress = {() =>{this.props.navigation.navigate("App")}} style = {styles.button}><Text style = {styles.title}>⭐View User⭐</Text></TouchableOpacity>
+          <TouchableOpacity onPress = {() =>{this.props.navigation.navigate("AddUserdata")}} style = {styles.button}><Text style = {styles.title}>⭐Add User⭐</Text></TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -73,5 +78,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#DDDDDD",
     padding: 10,
     },
+
+  dualbutton : {
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 
 });

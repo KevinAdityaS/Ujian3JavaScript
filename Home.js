@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import App from './App'
 import AddUserdata from './AddUserdata'
-import UpdateUserdata from './UpdateUserdata.js'
+import UpdateUserdata from './UpdateUserdata'
 
 const Stack = createStackNavigator();
 

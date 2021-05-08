@@ -6,8 +6,8 @@ export class UpdateUserdata extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        id : this.props.route.params.id,
-        username : this.props.route.params.username,
+      id : this.props.route.params.id,
+      username : this.props.route.params.username,
 	    email : this.props.route.params.email,
 	    phone : this.props.route.params.phone,
 	    address : this.props.route.params.address
@@ -15,8 +15,7 @@ export class UpdateUserdata extends Component {
   }
 
   handleUpdate(){
-
-    axios.post('http://192.168.0.106:4646/userdata/updateUserdata/${this.state.id}', this.state)
+    axios.put(`http://192.168.0.106:4646/userdata/updateUserdata/${this.state.id}`, this.state)
 
     .then( (response) => {
         alert(response.data);
@@ -42,7 +41,7 @@ export class UpdateUserdata extends Component {
         <TextInput value = {this.state.address} placeholder = "Address" onChangeText={(data)=>{this.setState({address : data})}}/>
       
         <TouchableOpacity style = {styles.button} onPress = {this.handleUpdate.bind(this)}><Text style={styles.title}>⭐Update Userdata⭐</Text></TouchableOpacity>
-      
+        <TouchableOpacity style = {styles.button} onPress={()=>{this.props.navigation.replace("App")}}><Text style={styles.title}>⭐Cancel⭐</Text></TouchableOpacity> 
       </View>
     );
   }
@@ -75,5 +74,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#DDDDDD",
     padding: 10,
     },
+
+  dualbutton : {
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 
 });
