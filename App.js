@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RNPickerSelect from "react-native-picker-select"
+import RNPickerSelect from 'react-native-picker-select'
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity, TextInput, Alert } from 'react-native'
 import axios from 'axios'
 
@@ -127,7 +127,16 @@ export default class App extends Component {
 
   render() {
       return (
-          <SafeAreaView style = {styles.container}>          
+          <SafeAreaView style = {styles.container}>
+            <RNPickerSelect pickerProps = {{style: {height: 40, overflow: 'hidden'}}}
+                onValueChange={(value) => console.log(value)}
+                items={[
+                    { label: 'Username', value: 'username' },
+                    { label: 'Email', value: 'email' },
+                    { label: 'Phone', value: 'phone' },
+                    { label: 'Address', value: 'address' },
+                ]}
+            />          
             <TextInput TextInput placeholder = "Search a Biodata Here..." onChangeText = {(data) => {this.setState({uname : data})}}/>
             <TouchableOpacity onPress={this.getData.bind(this)} style={styles.button}><Text style={styles.title}>⭐Search⭐</Text></TouchableOpacity>
             <FlatList 
